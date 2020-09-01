@@ -1,19 +1,31 @@
-alert("Hello World! Welcome to Matching Game. Click 'ok' to start");
+
 
 var lettersArray = ["a","b","c","a","b","c","r"];
 var score = 0;
 var previousScore = 0;
 
-	checkIf();
+	setTimeout(function(){
+		alert("Hello World! Welcome to Matching Game. Click 'ok' to start");
+		checkIf();
+	}, 5000);	
 
 	function checkIf(){
 		while (lettersArray.length>1){
 			var guess1 = prompt("Input 1st value here:");
 			var guess2 = prompt("Input 2nd value here:");
 
-			checkMatch(lettersArray[guess1],lettersArray[guess2]); 	
+			console.log("guess1", guess1);
+			console.log("guess2", guess2);
+
+			if(guess1 !== "" && guess2 !== ""){
+				checkMatch(lettersArray[guess1],lettersArray[guess2]); 	
+			}
+			else{
+				alert("Invalid input");
+			}
 		}
-			alert("Congrats you finished! Your final score is: " + score)
+		
+		alert("Congrats you finished! Your final score is: " + score)
 
 	}
 
@@ -33,7 +45,6 @@ var previousScore = 0;
 			lettersArray.splice(lettersArray.indexOf(guess1),1);
 			lettersArray.splice(lettersArray.indexOf(guess2),1);
 		}
-			
 		else{
 			if(guess1 ==="r" || guess2 === "r"){ 
 				alert("You chose a joker. You lost 10 pts");    //does this || work?       
@@ -45,19 +56,20 @@ var previousScore = 0;
 				}
 			}
 		}
-	shuffle(lettersArray);		
+
+		shuffle(lettersArray);		
 	}
 	
-
 	function shuffle(lettersArray){									
 		var newPos = 0;
 		var temp = 0;
+
 		for(var i=lettersArray.length -1; i>0; i--) {
 			newPos = Math.floor(Math.random() * (i+1));
 			temp = lettersArray[newPos];
+			
 			lettersArray[newPos] = lettersArray[i];
 			lettersArray[i] = temp;
 		}
-
 	}
 
