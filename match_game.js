@@ -17,8 +17,8 @@ var previousScore = 0;
 
 	}
 
-	function checkMatch(guess1,guess2){				
-		if(guess1 == guess2){
+	function checkMatch(guess1,guess2){
+		if(guess1 === guess2){
 			if(previousScore>0){ 						//is there such a thing as variables that are specifically tied only to functions?
 				alert("That's 2 wins in a row! +20 pts!!!");
 				score += 20;
@@ -28,15 +28,16 @@ var previousScore = 0;
 				alert("Match! You won 10pts");
 				score += 10;
 				previousScore += 10;
-				lettersArray.splice(lettersArray.indexOf(guess1),1);
-				lettersArray.splice(lettersArray.indexOf(guess2),1);
 			}	
+			
+			lettersArray.splice(lettersArray.indexOf(guess1),1);
+			lettersArray.splice(lettersArray.indexOf(guess2),1);
 		}
 			
 		else{
-			if(guess1||guess2 == "r"){ 
-			alert("You chose a joker. You lost 10 pts")    //does this || work?       
-			score -= 10
+			if(guess1 ==="r" || guess2 === "r"){ 
+				alert("You chose a joker. You lost 10 pts");    //does this || work?       
+				score -= 10
 			}
 			else{
 				if(guess1 != guess2){
